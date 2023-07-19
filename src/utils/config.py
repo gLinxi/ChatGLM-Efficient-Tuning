@@ -113,7 +113,7 @@ class DataTrainingArguments:
         metadata={"help": "The name of provided dataset(s) to use. Use comma to separate multiple datasets."}
     )
     dataset_dir: Optional[str] = field(
-        default="data",
+        default="/root/share/TrainEnv/ChatGLM-Efficient-Tuning/data/",
         metadata={"help": "The name of the folder containing datasets."}
     )
     split: Optional[str] = field(
