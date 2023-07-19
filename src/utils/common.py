@@ -291,6 +291,7 @@ def prepare_args(
 
     if len(sys.argv) == 2 and sys.argv[1].endswith(".json"): # Provide arguments with a json file.
         model_args, data_args, training_args, finetuning_args = parser.parse_json_file(json_file=os.path.abspath(sys.argv[1]))
+        print("params check!!!!!!!!!!!!!!!!!!", data_args)
     else:
         model_args, data_args, training_args, finetuning_args = parser.parse_args_into_dataclasses()
 
