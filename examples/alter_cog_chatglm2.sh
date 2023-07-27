@@ -1,8 +1,8 @@
 #!/bin/bash
 
-CUDA_VISIBLE_DEVICES=0 python ../src/train_sft.py \
+CUDA_VISIBLE_DEVICES=0 python ../src/train_bash.py \
+    --stage sft \
     --model_name_or_path path_to_chatglm2_6b \
-    --use_v2 \
     --do_train \
     --dataset self_cognition \
     --dataset_dir ../data \
@@ -19,9 +19,9 @@ CUDA_VISIBLE_DEVICES=0 python ../src/train_sft.py \
     --num_train_epochs 20.0 \
     --fp16
 
-CUDA_VISIBLE_DEVICES=0 python ../src/train_sft.py \
+CUDA_VISIBLE_DEVICES=0 python ../src/train_bash.py \
+    --stage sft \
     --model_name_or_path path_to_chatglm2_6b \
-    --use_v2 \
     --do_predict \
     --dataset self_cognition \
     --dataset_dir ../data \
