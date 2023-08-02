@@ -3,28 +3,30 @@
 # date
 date=`date +%Y%m%d%H`
 
-# default
+# hub default path
 model_base_dir="/root/share/LocalModelHub"
 # model_base_dir="/home/apps/gzx/LocalModelHub"
 # model_base_dir="/data/jupyterlab/gzx/LocalModelHub/"
-chatglm2_6b=${model_base_dir}"/chatglm2_6b/hf"
-chatglm_6b=${model_base_dir}"/chatglm_6b/hf"
+
+# models
+baichuan_13b_chat=${model_base_dir}"/baichuan_13b_chat/hf"
 
 # params
 gpu_id=0
 model="test_chatglm6b"
 sft_data="tool_v2_train"
 output_dir="${model_base_dir}/"${model}"/ckp"
-log_dir="${model_base_dir}/"${model}"/log/"
+log_dir="${model_base_dir}/"${model}"/log"
 
 mkdir -p ${output_dir}
 mkdir -p ${log_dir}
 
 set -x
-CUDA_VISIBLE_DEVICES=${gpu_id} python ./src/train_sft.py \
-    --model_name_or_path ${chatglm_6b} \
+CUDA_VISIBLE_DEVICES=${gpu_id} python ./src/train_bash.py \
+    --model_name_or_path ${baichuan_13b_chat} \
+    --stage sft \
     --do_train \
-    --dataset  ${sft_data}\
+    --dataset  ${sft_data} \
     --finetuning_type lora \
     --output_dir ${output_dir} \
     --overwrite_cache \
@@ -39,4 +41,4 @@ CUDA_VISIBLE_DEVICES=${gpu_id} python ./src/train_sft.py \
     --max_target_length 2048 \
     --ddp_find_unused_parameters False \
     --num_train_epochs 3.0 \
-    --fp16
+    --fp16 > ${log_dir}/${date} 2>&1
