@@ -9,7 +9,8 @@ model_base_dir="/root/share/LocalModelHub"
 # model_base_dir="/data/jupyterlab/gzx/LocalModelHub/"
 
 # models
-baichuan_13b_chat=${model_base_dir}"/baichuan_13b_chat/hf"
+chatglm2_6b=${model_base_dir}"/chatglm2_6b/hf"
+chatglm_6b=${model_base_dir}"/chatglm_6b/hf"
 
 # params
 gpu_id=0
@@ -23,7 +24,7 @@ mkdir -p ${log_dir}
 
 set -x
 CUDA_VISIBLE_DEVICES=${gpu_id} python ./src/train_bash.py \
-    --model_name_or_path ${baichuan_13b_chat} \
+    --model_name_or_path ${chatglm_6b} \
     --stage sft \
     --do_train \
     --dataset  ${sft_data} \
